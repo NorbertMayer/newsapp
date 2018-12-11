@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_view"
+        card_view:cardElevation="14dp"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:scaleType="fitXY"/>
+            <TextView
+                android:layout_below="@id/thumbnail"
+                android:id="@+id/excerpt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_below="@+id/excerpt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/excerpt_description"
+                android:padding="10dp"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/excerpt_author"
+                android:layout_below="@+id/excerpt_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:padding="10dp"
+                android:textStyle="normal"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/excerpt_url"
+                android:layout_below="@id/excerpt_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textStyle="normal"
+                android:textSize="12sp"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+

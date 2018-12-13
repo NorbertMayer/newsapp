@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_content);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // change the text color for toolbar
-        //toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         //remove the arrow from the ActionBar
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

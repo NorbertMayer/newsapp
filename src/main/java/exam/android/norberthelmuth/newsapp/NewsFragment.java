@@ -3,37 +3,31 @@ package exam.android.norberthelmuth.newsapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-import exam.android.norberthelmuth.newsapp.Adapter.BBCNewsAdapter;
+import exam.android.norberthelmuth.newsapp.Adapter.NewsAdapter;
 import exam.android.norberthelmuth.newsapp.Common.Common;
 import exam.android.norberthelmuth.newsapp.Common.IOpenNewsMap;
 import exam.android.norberthelmuth.newsapp.Model.Article;
 import exam.android.norberthelmuth.newsapp.Model.NewsResult;
-import exam.android.norberthelmuth.newsapp.Model.Source;
 import exam.android.norberthelmuth.newsapp.Retrofit.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BBCNewsFragment extends Fragment implements BBCNewsAdapter.OnItemClickListener {
+public class NewsFragment extends Fragment implements NewsAdapter.OnItemClickListener {
 
-    static BBCNewsFragment instance;
+    static NewsFragment instance;
     private RecyclerView recyclerView;
     private View rootView;
     private Context context;
@@ -43,46 +37,20 @@ public class BBCNewsFragment extends Fragment implements BBCNewsAdapter.OnItemCl
     MainActivity mainActivity;
     MenuItem item;
 
-    public static BBCNewsFragment getInstance(String country, String category) {
-        //if (instance == null ) {
-            BBCNewsFragment instance = new BBCNewsFragment();
+    public static NewsFragment getInstance(String country, String category) {
+
+            NewsFragment instance = new NewsFragment();
             Bundle args = new Bundle();
-        args.putString("country", country);
+            args.putString("country", country);
             args.putString("category", category);
             instance.setArguments(args);
-        //}
+
 
         return instance;
     }
 
-    public BBCNewsFragment() {
+    public NewsFragment() {
         // Required empty public constructor
-    }
-
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setHasOptionsMenu(true);
-//    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Do something that differs the Activity's menu here
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.bbc_news:
-                // getRO();
-                return false;
-            case R.id.bbc_sport:
-                // getGB();
-                return true;
-            default:
-                break;
-        }
-        return false;
     }
 
     @Override
@@ -90,7 +58,6 @@ public class BBCNewsFragment extends Fragment implements BBCNewsAdapter.OnItemCl
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.recycler_news_view_fragment, container, false);
-        setHasOptionsMenu(true);
 
         Bundle args = this.getArguments();
         String country = args.getString("country");
@@ -111,9 +78,9 @@ public class BBCNewsFragment extends Fragment implements BBCNewsAdapter.OnItemCl
             @Override
             public void onResponse(Call<NewsResult> call, Response<NewsResult> response) {
                     if  (response.body().getStatus().equals("ok")) {
-                        BBCNewsFragment.this.articleList = response.body().getArticles();
-                        if (BBCNewsFragment.this.articleList.size() > 0) {
-                            final BBCNewsAdapter bbcNewsAdapter = new BBCNewsAdapter(BBCNewsFragment.this.articleList, context);
+                        NewsFragment.this.articleList = response.body().getArticles();
+                        if (NewsFragment.this.articleList.size() > 0) {
+                            final NewsAdapter newsAdapter = new NewsAdapter(NewsFragment.this.articleList, context);
                             recyclerView = getView().findViewById(R.id.recycler_view);
 
                             LinearLayoutManager mLayout = new LinearLayoutManager(context);
@@ -121,8 +88,8 @@ public class BBCNewsFragment extends Fragment implements BBCNewsAdapter.OnItemCl
                             mLayout.setOrientation(LinearLayoutManager.VERTICAL);
                             mLayout.findViewByPosition(getId());
 
-                            recyclerView.setAdapter(bbcNewsAdapter);
-                            bbcNewsAdapter.setOnItemClickListener(BBCNewsFragment.this);
+                            recyclerView.setAdapter(newsAdapter);
+                            newsAdapter.setOnItemClickListener(NewsFragment.this);
                         }
                     }
             }

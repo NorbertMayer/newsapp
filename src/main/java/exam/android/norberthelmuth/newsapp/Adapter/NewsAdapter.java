@@ -1,8 +1,6 @@
 package exam.android.norberthelmuth.newsapp.Adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,15 +11,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import exam.android.norberthelmuth.newsapp.BBCNewsFragment;
 import exam.android.norberthelmuth.newsapp.Model.Article;
 import exam.android.norberthelmuth.newsapp.Model.Source;
 import exam.android.norberthelmuth.newsapp.R;
 
-public class BBCNewsAdapter extends RecyclerView.Adapter<BBCNewsAdapter.ViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<Article> articleArrayList;
     private Context context;
     private OnItemClickListener mListener;
@@ -36,17 +32,17 @@ public class BBCNewsAdapter extends RecyclerView.Adapter<BBCNewsAdapter.ViewHold
         this.mListener = listener;
     }
     // in the constructor we need to add Context as second argument
-    public BBCNewsAdapter(List<Article> articleArrayList, Context context) {
+    public NewsAdapter(List<Article> articleArrayList, Context context) {
         this.articleArrayList = articleArrayList;
         this.context = context;
     }
     @Override
-    public BBCNewsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_item, viewGroup, false);
-        return new BBCNewsAdapter.ViewHolder(view, context, articleArrayList);
+        return new NewsAdapter.ViewHolder(view, context, articleArrayList);
     }
     @Override
-    public void onBindViewHolder(BBCNewsAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(NewsAdapter.ViewHolder viewHolder, int position) {
         final Article articleModel = articleArrayList.get(position);
         if (viewHolder.thumbnail != null) {
             Picasso.get().load(articleModel.getUrlToImage()).fit().centerInside().into(viewHolder.thumbnail);

@@ -18,6 +18,7 @@ import java.util.List;
 
 import exam.android.norberthelmuth.newsapp.BBCNewsFragment;
 import exam.android.norberthelmuth.newsapp.Model.Article;
+import exam.android.norberthelmuth.newsapp.Model.Source;
 import exam.android.norberthelmuth.newsapp.R;
 
 public class BBCNewsAdapter extends RecyclerView.Adapter<BBCNewsAdapter.ViewHolder> {
@@ -25,6 +26,7 @@ public class BBCNewsAdapter extends RecyclerView.Adapter<BBCNewsAdapter.ViewHold
     private Context context;
     private OnItemClickListener mListener;
     private Article articleModel;
+    private List<Source> sources;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -47,7 +49,7 @@ public class BBCNewsAdapter extends RecyclerView.Adapter<BBCNewsAdapter.ViewHold
     public void onBindViewHolder(BBCNewsAdapter.ViewHolder viewHolder, int position) {
         final Article articleModel = articleArrayList.get(position);
         if (viewHolder.thumbnail != null) {
-            Picasso.get().load(articleModel.getUrlToImage().toString()).fit().centerInside().into(viewHolder.thumbnail);
+            Picasso.get().load(articleModel.getUrlToImage()).fit().centerInside().into(viewHolder.thumbnail);
         }
         if(!TextUtils.isEmpty(articleModel.getTitle())) {
             viewHolder.excerpt_title.setText(articleModel.getTitle());

@@ -14,15 +14,12 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import exam.android.norberthelmuth.newsapp.Model.Article;
-import exam.android.norberthelmuth.newsapp.Model.Source;
 import exam.android.norberthelmuth.newsapp.R;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<Article> articleArrayList;
     private Context context;
     private OnItemClickListener mListener;
-    private Article articleModel;
-    private List<Source> sources;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -53,11 +50,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         if(!TextUtils.isEmpty(articleModel.getDescription())) {
             viewHolder.excerpt_description.setText(articleModel.getDescription());
         }
-        if(!TextUtils.isEmpty(articleModel.getUrl())) {
-            viewHolder.excerpt_author.setText(articleModel.getAuthor());
-        }
-        if(!TextUtils.isEmpty(articleModel.getTitle())) {
-            viewHolder.excerpt_url.setText(articleModel.getUrl());
+        if(!TextUtils.isEmpty(articleModel.getAuthor())) {
+            viewHolder.excerpt_author.setText("Author: " + articleModel.getAuthor());
         }
     }
 
@@ -71,7 +65,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         private TextView excerpt_title;
         private TextView excerpt_description;
         private TextView excerpt_author;
-        private TextView excerpt_url;
         private Context context;
         private List<Article> articles;
 
@@ -85,7 +78,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             excerpt_title = view.findViewById(R.id.excerpt_title);
             excerpt_description = view.findViewById(R.id.excerpt_description);
             excerpt_author = view.findViewById(R.id.excerpt_author);
-            excerpt_url = view.findViewById(R.id.excerpt_url);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override

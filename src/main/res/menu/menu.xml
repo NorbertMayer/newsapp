@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/bbc-news"
-        android:title="BBC News" />
-    <item android:id="@+id/bbc-sport"
-        android:title="BBC Sport" />
-</menu>

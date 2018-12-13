@@ -11,6 +11,8 @@ import android.telephony.TelephonyManager;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+
 import exam.android.norberthelmuth.newsapp.Adapter.ViewPagerAdapter;
 
 
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.main_content);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //remove the arrow from the ActionBar
+        //remove the arrow and title from the ActionBar
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -53,13 +55,21 @@ public class MainActivity extends AppCompatActivity {
                 "business", "entertainment", "general", "health", "science", "sports", "technology");
 
         // get info about device
-        TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
-        String country = tm.getNetworkCountryIso();
+        //TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+        //String country = tm.getNetworkCountryIso();
+        
+        // Get the country code
+        String country =  Locale.getDefault().getCountry();
 
         for (String category :
                 categories) {
             String title = category.substring(0, 1).toUpperCase() + category.substring(1);
-            adapter.addFragment(NewsFragment.getInstance(country, category), title);
+            if (country != null) {
+                adapter.addFragment(NewsFragment.getInstance(country, category), title);
+            } else {
+                adapter.addFragment(NewsFragment.getInstance("GB", category), title);
+            }
+
         }
         // dynamic fragment
         viewPager.setAdapter(adapter);

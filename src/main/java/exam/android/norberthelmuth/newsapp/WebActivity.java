@@ -7,7 +7,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class WebActivity extends AppCompatActivity {
 
@@ -22,8 +21,11 @@ public class WebActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         url = intent.getStringExtra("article_url");
+        // call the web activity
         WebView webView = findViewById(R.id.activity_web);
+        // call the progress bar
         mProgressBar = findViewById(R.id.progress_bar);
+        // set time for the progress bar
         mProgressBar.setMax(PROGRESS_TIME_OUT);
 
         loadWebViewLoad(webView);
@@ -36,9 +38,9 @@ public class WebActivity extends AppCompatActivity {
         webview.setWebViewClient(new WebViewClient());
         webview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, int newProgress) {
-
                 mProgressBar.setProgress(newProgress);
                 if (newProgress == PROGRESS_TIME_OUT) {
+                    // remove the progress bar if view is full loaded
                     mProgressBar.setVisibility(view.GONE);
                 }
                 super.onProgressChanged(view, newProgress);

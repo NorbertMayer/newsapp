@@ -21,7 +21,6 @@ public class Article {
     private Date publishedAt;
     @SerializedName("content")
     private String content;
-
     public Article() {
     }
 

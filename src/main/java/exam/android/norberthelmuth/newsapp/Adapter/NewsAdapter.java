@@ -57,10 +57,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return articleArrayList.size();
+        return this.articleArrayList.size();
     }
-    class ViewHolder extends RecyclerView.ViewHolder {
 
+    class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView thumbnail;
         private TextView excerpt_title;
         private TextView excerpt_description;
@@ -70,7 +70,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         ViewHolder(View view, Context context, List<Article> articleArrayList) {
             super(view);
-
             this.context = context;
             this.articles = articleArrayList;
             // when the user click any of the cards will invoke OnClickListener method

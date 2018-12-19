@@ -48,12 +48,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
         // create a List with news category
         List<String> categories = Arrays.asList(
                 "business", "entertainment", "general", "health", "science", "sports", "technology");
-
         // get info about device
+        // leave this for report
         //TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
         //String country = tm.getNetworkCountryIso();
 

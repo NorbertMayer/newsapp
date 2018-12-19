@@ -45,7 +45,6 @@ public class NewsFragment extends Fragment implements NewsAdapter.OnItemClickLis
             args.putString("category", category);
             instance.setArguments(args);
 
-
         return instance;
     }
 
@@ -70,9 +69,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.OnItemClickLis
 
     public void getData(String country, String category) {
         final IOpenNewsMap iOpenNewsMap = RetrofitClient.getClient().create(IOpenNewsMap.class);
-
         Call<NewsResult> call = iOpenNewsMap.getNewsBySource(country, category, Common.APP_ID);
-
         call.enqueue(new Callback<NewsResult>() {
 
             @Override
